@@ -4,6 +4,7 @@ import java.awt.*;
 public class Window extends JFrame {
     //att
     public boolean first = true;
+    public boolean color = true;
     //const
     public Window() {
         this.setTitle("BAM v2");
@@ -15,6 +16,8 @@ public class Window extends JFrame {
 
         multiPanel.setLayout(layout);
         multiPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,10));
+
+
 
         multiPanel.add(new HealthBar(this));
         multiPanel.add(new HealthBar(this));
@@ -34,5 +37,13 @@ public class Window extends JFrame {
 
     public void setFirst(){
         this.first = !this.first;
+    }
+
+    public boolean isColor(){
+        return color;
+    }
+
+    public void setColor(){
+        this.color = !this.color;
     }
 }

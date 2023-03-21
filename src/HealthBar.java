@@ -14,6 +14,7 @@ public class HealthBar extends JPanel implements MouseListener {
 
     Window myWindow;
 
+
     //const
     public HealthBar(Window window) { //general info about the healtbar JPanel
         myWindow = window;
@@ -27,23 +28,66 @@ public class HealthBar extends JPanel implements MouseListener {
     public void paintComponent(Graphics g) { //draws things inside JPanel
         super.paintComponent(g);
         drawHealthbarBackground(g);
-        if (myWindow.isFirst()) {
-            drawHealthbarGreen(g);
-        } else {
+        if(myWindow.isColor()){
+            if (myWindow.isFirst()) {
+                drawHealthbarGreen(g);
+            } else {
+                drawHealthbarRed(g);
+            }
+            myWindow.setFirst();
+            myWindow.setColor();
+        }else {
             drawHealthbarRed(g);
         }
-        myWindow.setFirst();
+
+
     }
+
+    /*
+            if (myWindow.isFirst()) {
+                drawHealthbarGreen(g);
+                myWindow.setFirst();
+            } else {
+                drawHealthbarRed(g);
+            }
+     */
+
+    /*
+    if (myWindow.first = true) {
+            drawHealthbarGreen(g);
+            myWindow.setFirst();
+        }
+        if(myWindow.first = false) {
+            drawHealthbarRed(g);
+            myWindow.first = true;
+        }
+     */
 
     public void drawHealthbarGreen(Graphics g) {
         g.setColor(Color.green);
         g.fillRect(50, 150, healthbarSize, 100);
     }
 
+
+    /*public void drawHealthbar(Graphics g) {
+        if (myWindow.isFirst()) {
+            g.setColor(Color.green);
+        } else {
+            g.setColor(Color.red);
+        }
+        myWindow.setFirst();
+
+        g.fillRect(50, 150, healthbarSize, 100);
+    }
+    */
+
+
     public void drawHealthbarRed(Graphics g) {
         g.setColor(Color.red);
         g.fillRect(50, 150, healthbarSize, 100);
     }
+
+
 
     public void drawHealthbarBackground(Graphics g) {
         g.setColor(Color.BLACK);
@@ -60,7 +104,6 @@ public class HealthBar extends JPanel implements MouseListener {
             int dmgInt = (int) (dmg * 100);
             healthbarSize = healthbarSize -= dmgInt;
             repaint();
-
         }
     }
 
